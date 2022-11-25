@@ -7,8 +7,8 @@ export default class CartStore {
         this._size = 1
         this._sale = { text: '', total: 0 }
         this._promo = { text: '', total: 0 }
-        this._deliveryMinDelivery = 1000
-        this._deliveryMinPrice = 1000
+        this._deliveryMinDelivery = 1200
+        this._deliveryMinPrice = 1200
         this._deliveryPrice = 0
         this._giftMinPrice = []
         this._gift = []
