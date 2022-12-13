@@ -519,7 +519,7 @@ class Aiko {
           'phone': '+' + order.phone,
           'orderTypeId': orderTypes ? orderTypes.id : null,
           'customer': {
-            'name': order.name ? order.name : '',
+            'name': order.name ? order.name : 'Нет имени',
             'comment': `Источник: ${order.type == 'app' ? 'Приложение' : 'Сайт'} Тип оплаты: ${paymentText}}`
           },
           'items': products,
