@@ -334,6 +334,8 @@ class Aiko {
 
     let config = await this.auth()
     let user
+    let customerId
+    let transitionId
     let terminal
     let orderTypes
     let payment = []
@@ -380,7 +382,8 @@ class Aiko {
       headers: config.header
     })
       .then(response => {
-        user = response.data.walletBalances[1]
+        customerId = response.data.id
+        user = response.data.walletBalances[0]
       })
       .catch(error => console.error(error, 'Данные пользователя'))
 
@@ -393,7 +396,7 @@ class Aiko {
       },
       headers: config.header
     })
-      .then(response => {
+      .then(async response => {
 
         let pay = response.data.paymentTypes.filter(item => item.code.toUpperCase() == order.payment.toUpperCase() && item)[0]
 
@@ -405,20 +408,38 @@ class Aiko {
           'paymentTypeId': pay.id,
           'sum': order.total
         })
+
         if (order.point && order.point > 0 && user.balance > 0 && user.balance >= order.point) {
-          let payPoints = response.data.paymentTypes.filter(item => item.code.toUpperCase() == 'INET' && item)[0]
+          let payPoints = response.data.paymentTypes.filter(item => item.code.toUpperCase() == 'BONUS' && item)[0]
           if (payPoints) {
-            payment.push({
-              'paymentTypeKind': payPoints.paymentTypeKind,
-              'paymentTypeId': payPoints.id,
-              'sum': Number(order.point),
-              'paymentAdditionalData': {
-                'credential': '+' + order.phone,
-                'searchScope': 'Phone',
-                'type': payPoints.paymentTypeKind
-              }
+            await axios({
+              method: 'post',
+              url: this.url + 'loyalty/iiko/customer/wallet/hold',
+              data: {
+                'customerId': customerId,
+                'walletId': user.id,
+                'organizationId': config.org,
+                'comment': 'Бронирование баллов',
+                'sum': Number(order.point)
+              },
+              headers: config.header
             })
-            User.update({ point: user.balance - Number(order.point) }, { where: { phone: order.phone } })
+              .then(response => transitionId = response.data.transitionId)
+              .catch(err => console.log(err))
+
+            if (transitionId) {
+              payment.push({
+                'paymentTypeKind': payPoints.paymentTypeKind,
+                'paymentTypeId': payPoints.id,
+                'sum': Number(order.point),
+                'paymentAdditionalData': {
+                  'credential': transitionId ? transitionId : '+' + order.phone,
+                  'searchScope': transitionId ? 'PaymentToken' : 'Phone',
+                  'type': transitionId ? 'IikoCard' : payPoints.paymentTypeKind
+                }
+              })
+              User.update({ point: user.balance - Number(order.point) }, { where: { phone: order.phone } })
+            }
           } else {
             return { status: false, message: 'Ошибка при получении данных о пользователе' }
           }

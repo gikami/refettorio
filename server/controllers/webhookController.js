@@ -25,6 +25,10 @@ class WebhookController {
                     desc = 'Отмена оплаты заказа'
                 } else if (data.transactionType == 'SetGuestCategoryTransaction') {
                     desc = 'Баллы сгорели'
+                } else if (data.transactionType == 'RefillWallet') {
+                    desc = 'Начисление баллов'
+                } else if (data.transactionType == 'HoldMoney') {
+                    desc = 'Списание баллов'
                 }
                 await Point.create({ userId: user.id, apiId: data.id, point: data.sum ?? 0, desc, type: data.transactionType, createdAt: data.changedOn })
             }
