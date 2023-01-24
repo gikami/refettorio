@@ -46,7 +46,7 @@ const Checkout = observer(() => {
     time: 1,
     timevalue: time,
     datevalue: dateNow,
-    payment: "card",
+    payment: "alfa",
     delivery: 1,
     total: cart.total,
     products: cart.cart,
@@ -65,7 +65,7 @@ const Checkout = observer(() => {
     person: 1,
     sale: cart.sale,
   });
-
+  console.log(checkout)
   useEffect(() => {
     axios
       .get("./config/index.json")
@@ -170,7 +170,7 @@ const Checkout = observer(() => {
       let streetId = streets.rows.find(
         (street) =>
           street.title.trim() ===
-            getAddressArray[e.target.value].street.trim() && street
+          getAddressArray[e.target.value].street.trim() && street
       );
       setCheckout({
         ...checkout,
@@ -702,7 +702,7 @@ const Checkout = observer(() => {
                             <td className="fw-6 text-end">
                               {(cart.total < cart.deliveryMinPrice ||
                                 cart.total < cart.deliveryMinDelivery) &&
-                              checkout.delivery == 2
+                                checkout.delivery == 2
                                 ? cart.deliveryPrice + " ₽"
                                 : "Бесплатно"}
                             </td>
@@ -734,16 +734,16 @@ const Checkout = observer(() => {
                         <button
                           disabled={
                             cart.cart &&
-                            cart.cart.length > 0 &&
-                            checkout.name &&
-                            checkout.name.length >= 1 &&
-                            checkout.phone &&
-                            checkout.phone.length >= 11 &&
-                            !sendLoading &&
-                            (cart.deliveryMinPrice <
-                              cart.total +
+                              cart.cart.length > 0 &&
+                              checkout.name &&
+                              checkout.name.length >= 1 &&
+                              checkout.phone &&
+                              checkout.phone.length >= 11 &&
+                              !sendLoading &&
+                              (cart.deliveryMinPrice <
+                                cart.total +
                                 (cart.sale.total ? cart.sale.total : 0) ||
-                              checkout.delivery == 1)
+                                checkout.delivery == 1)
                               ? false
                               : true
                           }
