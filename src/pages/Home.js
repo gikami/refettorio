@@ -55,13 +55,15 @@ const Home = observer(() => {
                             <div className='container'>
                                 <div className='row'>
                                     <div className='col-md-6'>
-                                        <h1>Пиццерия Refettorio!</h1>
-                                        <p className='fs-15 mb-2'>Дорогие гости!</p>
+                                        <h1>Пиццерия «RefettoriO»!</h1>
+                                        <p className='fs-18 mb-3'>Маленькая Италия в центре Казани.</p>
+                                        {/* <p className='fs-16 mb-3'>Дорогие гости!</p>
                                         <p className='fs-15 mb-3'>Скидка в заведении по будням с 12 до 15 - 20%.</p>
-                                        <ul className='list-unstyled fs-13 ps-3 mb-3'>
-                                            <li>! Скидка на день рождения -15%;</li>
-                                        </ul>
-                                        <p className='fs-15'>С уважением Ваша REFETTORIO!</p>
+                                        <p className='fs-15 mb-3'>Скидка на день рождения -15%;</p> */}
+                                        {/* <ul className='list-unstyled fs-13 ps-3 mb-3'>
+                                            <li>Скидка на день рождения -15%;</li>
+                                        </ul> */}
+                                        {/* <p className='fs-15'>С уважением Ваша REFETTORIO!</p> */}
                                     </div>
                                 </div>
                             </div>
