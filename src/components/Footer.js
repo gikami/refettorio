@@ -99,7 +99,7 @@ const Footer = observer(() => {
                                 <ul className='list-unstyled w-100'>
                                     <li><Link to={HOME_ROUTE}>Меню</Link></li>
                                     <li><Link to={ABOUT_ROUTE}>О нас</Link></li>
-                                    <li><Link to={VACANCY_ROUTE}>Вакансии</Link></li>
+                                    <li><Link to={VACANCY_ROUTE}>Бонусы</Link></li>
                                     <li><Link to={DELIVERY_ROUTE}>Доставка и оплата</Link></li>
                                 </ul>
                             </nav>
@@ -246,7 +246,7 @@ const Footer = observer(() => {
                             <li><NavLink to={ABOUT_ROUTE}>О нас</NavLink></li>
                             <li><NavLink to={SALE_ROUTE}>Акции</NavLink></li>
                             <li><NavLink to={DELIVERY_ROUTE}>Доставка и оплата</NavLink></li>
-                            <li><NavLink to={VACANCY_ROUTE}>Вакансии</NavLink></li>
+                            <li><NavLink to={VACANCY_ROUTE}>Бонусы</NavLink></li>
                             <li><NavLink to={FAVORITES_ROUTE}>Сравнение</NavLink></li>
                         </ul>
                     </nav>

@@ -77,7 +77,7 @@ const Header = observer(() => {
                                     <li><NavLink to={ABOUT_ROUTE}>О нас</NavLink></li>
                                     <li><NavLink to={SALE_ROUTE}>Акции</NavLink></li>
                                     <li><NavLink to={DELIVERY_ROUTE}>Доставка и оплата</NavLink></li>
-                                    <li><NavLink to={VACANCY_ROUTE}>Вакансии</NavLink></li>
+                                    <li><NavLink to={VACANCY_ROUTE}>Бонусы</NavLink></li>
                                     <li>
                                         <NavLink to={FAVORITES_ROUTE}>
                                             <img src='/images/icons/compare.png' alt="Сравнение" className='icon me-2' />
