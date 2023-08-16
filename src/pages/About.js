@@ -53,6 +53,9 @@ const About = () => {
                             <SwiperSlide>
                                 <img src="/images/hall8.jpg" alt="RefettoriO" className="img-fluid" />
                             </SwiperSlide>
+                             <SwiperSlide>
+                                <img src="/images/hall9.jpg" alt="RefettoriO" className="img-fluid" />
+                            </SwiperSlide>
                         </Swiper>
                         
                     </div>
